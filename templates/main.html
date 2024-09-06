@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intrusion Detection System</title>
+    <!-- Add Bootstrap CSS (you need to include Bootstrap CSS files) -->
+    <link rel="stylesheet" href="path/to/bootstrap.min.css">
+    <style>
+        /* Custom styles for your page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upper GI Cancer Prediction</h1>
+        <hr>
+        {% if result %}
+        <h2>Prediction is: {{ result }}</h2>
+        {% endif %}
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="Machine Learning Model">ML_Model:</label>
+                <select name="ML_Model" id="ML_Model" class="form-control" required>
+                    <option value="Decision_Tree_Classifier">Decision_Tree_Classifier</option>
+                    <option value="Random_Forest_Classifier">Random_Forest_Classifier</option>
+                    <option value="Support_Vector_Machine">Support_Vector_Machine</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Sex">Sex:</label>
+                <select name="Sex" id="Sex" class="form-control" required>
+                    <option value="Male">M</option>
+                    <option value="Female">F</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Age">Age:</label>
+                <input type="number" name="Age" id="Age" class="form-control" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="Weight">Weight:</label>
+                <input type="number" name="Weight" id="Weight" class="form-control" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="Height">Height:</label>
+                <input type="number" name="Height" id="Height" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Histology">Histology:</label>
+                <select name="Histology" id="Histology" class="form-control" required>
+                    <option value="ACC">ACC</option>
+                    <option value="SCC">SCC</option>
+                </select>
+            </div>
+            
+
+            <div class="form-group">
+                <label for="Pre_op_CRP_level">Pre-op CRP level:</label>
+                <input type="number" name="Pre_op_CRP_level" id="Pre_op_CRP_level" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_Bili">Pre-op Bili:</label>
+                <input type="number" name="Pre_op_Bili" id="Pre_op_Bili" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_ALT">Pre-op ALT:</label>
+                <input type="number" name="Pre_op_ALT" id="Pre_op_ALT" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_Alk_Phos">Pre-op Alk Phos:</label>
+                <input type="number" name="Pre_op_Alk_Phos" id="Pre_op_Alk_Phos" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_GGT">Pre-op GGT:</label>
+                <input type="number" name="Pre_op_GGT" id="Pre_op_GGT" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_Albumin">Pre-op Albumin:</label>
+                <input type="number" name="Pre_op_Albumin" id="Pre_op_Albumin" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_Urea">Pre-op Urea:</label>
+                <input type="number" name="Pre_op_Urea" id="Pre_op_Urea" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_Creatinine">Pre-op Creatinine:</label>
+                <input type="number" name="Pre_op_Creatinine" id="Pre_op_Creatinine" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_estimated_GFR">Pre-op estimated GFR:</label>
+                <input type="number" name="Pre_op_estimated_GFR" id="Pre_op_estimated_GFR" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_Na">Pre-op Na:</label>
+                <input type="number" name="Pre_op_Na" id="Pre_op_Na" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_K">Pre-op K:</label>
+                <input type="number" name="Pre_op_K" id="Pre_op_K" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_TCO2">Pre-op TCO2:</label>
+                <input type="number" name="Pre_op_TCO2" id="Pre_op_TCO2" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_Glucose">Pre-op Glucose:</label>
+                <input type="number" name="Pre_op_Glucose" id="Pre_op_Glucose" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_Hb">Pre-op Hb:</label>
+                <input type="number" name="Pre_op_Hb" id="Pre_op_Hb" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_PLT">Pre-op PLT:</label>
+                <input type="number" name="Pre_op_PLT" id="Pre_op_PLT" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Pre_op_WCC">Pre-op WCC:</label>
+                <input type="number" name="Pre_op_WCC" id="Pre_op_WCC" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Blood_testosterone">Blood testosterone:</label>
+                <input type="number" name="Blood_testosterone" id="Blood_testosterone" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Blood_calc_free_testosterone">Blood calc free testosterone:</label>
+                <input type="number" name="Blood_calc_free_testosterone" id="Blood_calc_free_testosterone" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Blood_oestradiol">Blood oestradiol:</label>
+                <input type="number" name="Blood_oestradiol" id="Blood_oestradiol" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Blood_LH">Blood LH:</label>
+                <input type="number" name="Blood_LH" id="Blood_LH" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Blood_FSH">Blood FSH:</label>
+                <input type="number" name="Blood_FSH" id="Blood_FSH" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Blood_SHBG">Blood SHBG:</label>
+                <input type="number" name="Blood_SHBG" id="Blood_SHBG" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Blood_insulin">Blood insulin:</label>
+                <input type="number" name="Blood_insulin" id="Blood_insulin" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="Blood_cortisol">Blood cortisol:</label>
+                <input type="number" name="Blood_cortisol" id="Blood_cortisol" class="form-control" step="0.01" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
